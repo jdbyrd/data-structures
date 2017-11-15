@@ -2,6 +2,7 @@ var Queue = function() {
   // Hey! Rewrite in the new style. Your code will wind up looking very similar,
   // but try not not reference your old code in writing the new style.
   var someInstance = {};
+  someInstance.queue = {};
   someInstance.count = 0;
   someInstance.front = 0;
   someInstance.back = 0;
@@ -19,8 +20,18 @@ var extend = function(to, from) {
 };
 
 var queueMethods = {
-  enqueue : function(string) {},
-  dequeue : function() {},
+  enqueue : function(string) {
+    this.queue[this.back] = string;
+    this.back++;
+    this.count++;
+  },
+  dequeue : function() {
+    if(this.count !== 0){
+      this.front++;
+      this.count = this.back-this.front;
+      return this.queue[this.front - 1];
+    }
+  },
   size : function() {return this.count;}
 };
 
