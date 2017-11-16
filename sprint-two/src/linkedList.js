@@ -5,10 +5,10 @@ var LinkedList = function() {
 
   list.addToTail = function(value) {
     var node = Node(value);
-    if(list.head === null){
+    if(list.head === null) {
       list.head = node;
     }
-    if(list.tail !== null){
+    if(list.tail !== null) {
       list.tail.next = node;
     }
     list.tail = node;
@@ -20,18 +20,16 @@ var LinkedList = function() {
     return returnVal;
   };
 
-  list.contains = function(target) {
-    var testVal = list.head.value;
-    // while(target !== testVal){
-    //   if(testVal === null){
-    //     return;
-    //   }else{
-    //     testVal = testVal.next;  
-    //   }
-    // }
-    return true;
+  list.contains = function(target, node) {
+    node = node || list.head;
+    if(node.value === target) {
+      return true;
+    } else if(node.next === null) {
+      return false;
+    } else {
+      return list.contains(target, node.next);
+    }
   };
-
   return list;
 };
 
