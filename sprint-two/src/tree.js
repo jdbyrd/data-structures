@@ -6,7 +6,7 @@ var Tree = function(value) {
   extend(newTree, treeMethods);
 
   newTree.children = {};  // fix me
-  childCount = 0;
+  newTree.childCount = 0;
 
   return newTree;
 };
@@ -14,11 +14,21 @@ var Tree = function(value) {
 var treeMethods = {};
 
 treeMethods.addChild = function(value) {
-  this.children[childCount] = Tree(value);
-  childCount++;
+  this.children[this.childCount] = Tree(value);
+  this.childCount++;
 };
 
-treeMethods.contains = function(target) {
+treeMethods.contains = function(target, tree) {
+  tree = tree || this;
+  if(tree.value === target){
+    return true;
+  }
+  for(var key in tree.children){
+    if(treeMethods.contains(target, tree.children[key])){
+      return true;
+    }
+  }
+  return false;
 };
 
 var extend = function(to, from) {
