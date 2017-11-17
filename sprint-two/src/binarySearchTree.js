@@ -17,20 +17,6 @@ bTreeMethods.insert = function(value, parent){
 
   var insertTree = BinarySearchTree(value);
 
-  // var insertTree = {value: value, right: null, left: null};
-  // if(value < parent.value){
-  //   if(parent.left === null){
-  //     parent.left = insertTree;
-  //   }else{
-  //     parent.left = this.insert(value, parent.left);
-  //   }
-  // }else if(value > parent.value){
-  //   if(parent.right === null){
-  //     parent.right === insertTree;
-  //   }else{
-  //     parent.right = this.insert(value, parent.right); 
-  //   }
-  // }
   if(value > parent.value){
     if(parent.right === null){
       parent.right = insertTree;
